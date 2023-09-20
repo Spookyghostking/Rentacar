@@ -1,0 +1,21 @@
+﻿@model Rentacar.BusinessModels.CarImage.CarImagesCreateBusinessModel
+
+<h4>CarImagesCreateBusinessModel</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Create" enctype="multipart/form-data">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="CarID" />
+            <div class="form-group">
+                <label asp-for="Images" class="form-label"></label>
+                <input class="form-control" asp-for="Images" multiple>
+                <span asp-validation-for="Images" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Add" class="btn btn-primary" />
+                <a class="btn btn-primary" asp-controller="CarAdmin" asp-action="CarImages" asp-route-id="@Model.CarID">Back</a>
+            </div>
+        </form>
+    </div>
+</div>

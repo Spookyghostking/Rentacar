@@ -1,0 +1,25 @@
+﻿@model IEnumerable<Rentacar.BusinessModels.CarImage.CarImageBusinessModel>
+
+<div class="text-center">
+    <a class="btn btn-primary" asp-action="Details" asp-route-id="@Model.First().CarID">Back to car details</a>
+</div>
+
+<div class="container text-center justify-content-center d-flex flex-wrap">
+    @{ var count = 1; }
+    @foreach (var image in Model)
+    {
+        <div class="card" style="width: 18rem;">
+            <img src="@image.Url" class="card-img-top" alt="Image of @image.CarCodeName @count">
+            <div class="card-body">
+                <a class="btn btn-danger" asp-controller="CarImageAdmin" asp-action="Delete" asp-route-id="@image.ID">Delete</a>
+            </div>
+        </div>
+        count += 1;
+    }
+    <div class="card" style="width: 18rem;">
+        <div class="card-body">
+            <a class="btn btn-primary align-middle" asp-controller="CarImageAdmin" asp-action="Create" asp-route-id="@Model.First().CarID">+ Add new</a>
+        </div>
+    </div>
+</div>
+

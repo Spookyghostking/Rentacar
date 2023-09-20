@@ -1,0 +1,10 @@
+﻿@model IEnumerable<Rentacar.BusinessModels.Car.CarDetailsBusinessModel>
+
+@foreach (var car in Model)
+{
+    <div class="card" style="width: 18rem;">
+        @await Html.PartialAsync("_ImageCarousel", car.Images)
+        <div class="card-body">
+        </div>
+    </div>
+}

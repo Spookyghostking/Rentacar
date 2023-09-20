@@ -1,0 +1,14 @@
+﻿@model Rentacar.BusinessModels.CarImage.CarImageBusinessModel
+
+<h3>Delete image?</h3>
+<div>
+    <div class="card" style="width: 18rem;">
+        <img src="@Model.Url" class="card-img-top" alt="Image of @Model.CarCodeName">
+        <div class="card-title">Image of @Model.CarCodeName</div>
+        <form asp-action="Delete">
+            <input type="hidden" asp-for="ID" />
+            <input type="submit" value="Delete" class="btn btn-danger" />
+            <a class="btn btn-primary" asp-controller="CarAdmin" asp-action="CarImages" asp-route-id="@Model.CarID">No</a>
+        </form>
+    </div>
+</div>

@@ -1,0 +1,76 @@
+﻿@model IEnumerable<Rentacar.BusinessModels.UserInfo.UserInfoDetailsBusinessModel>
+
+
+@foreach (var userInfo in Model)
+{
+    <div>
+        <h4>UserInfoDataModel</h4>
+        <hr />
+        @if (userInfo.IdentificationImages != null)
+        {
+            <div class="container d-flex">
+            @foreach (var image in userInfo.IdentificationImages)
+            {
+                    <img class="w-25" src="@image.Url">
+            }
+            </div>
+        }
+        <dl class="row">
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => userInfo.IdentificationType.ID)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => userInfo.IdentificationType.ID)
+            </dd>
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => userInfo.IdentificationType.Value)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => userInfo.IdentificationType.Value)
+            </dd>
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => userInfo.IdentificationNumber)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => userInfo.IdentificationNumber)
+            </dd>
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => userInfo.FirstName)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => userInfo.FirstName)
+            </dd>
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => userInfo.LastName)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => userInfo.LastName)
+            </dd>
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => userInfo.DateOfBirth)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => userInfo.DateOfBirth)
+            </dd>
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => userInfo.AddressOfResidence)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => userInfo.AddressOfResidence)
+            </dd>
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => userInfo.PhoneNumber)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => userInfo.PhoneNumber)
+            </dd>
+        </dl>
+    </div>
+    <div>
+        <a class="btn btn-primary" asp-controller="Reservation" asp-action="Create" asp-route-id="@userInfo.ID">Select</a>
+        <a class="btn btn-warning text-light" asp-action="Edit" asp-route-id="@userInfo.ID">Edit</a> 
+    </div>
+    <hr />
+}
+<a class="btn btn-primary" asp-action="Create">+ Add New</a>
+
