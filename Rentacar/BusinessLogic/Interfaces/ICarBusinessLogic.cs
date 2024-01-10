@@ -1,4 +1,5 @@
 ﻿using Rentacar.BusinessModels.Car;
+using Rentacar.BusinessModels.Reservation;
 using Rentacar.DataModels;
 
 namespace Rentacar.BusinessLogic.Interfaces
@@ -11,5 +12,7 @@ namespace Rentacar.BusinessLogic.Interfaces
         CarDataModel Insert(CarCreateBusinessModel carBusiness);
         CarDataModel Update(CarEditBusinessModel carBusiness);
         bool DeleteByID(int id);
+        IEnumerable<CarDetailsBusinessModel> GetAvailable(ReservationCreateBusinessModel reservation);
+        IEnumerable<CarDetailsBusinessModel> GetAvailable(ReservationEditBusinessModel reservation);
     }
 }

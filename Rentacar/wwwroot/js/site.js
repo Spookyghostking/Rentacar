@@ -37,8 +37,13 @@ $(function () {
                 },
                 success: function (data) {
                     console.log(data);
+                    $("#availableCarsContainer").html(data);
                 }
             });
+        } else if ($(e.target).hasClass("reservationCreateCarSelect")) {
+            var carID = $(e.target).val();
+            $("#carIDHiddenInput").val(carID);
+            $("form").submit();
         }
     });
 });

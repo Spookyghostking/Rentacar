@@ -1,0 +1,29 @@
+﻿@model Rentacar.BusinessModels.Reservation.ReservationEditBusinessModel
+
+@{
+    IEnumerable<Rentacar.BusinessModels.Car.CarDetailsBusinessModel> availableCars = ViewBag.AvailableCars;
+
+}
+
+<h4>ReservationDataModel</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Edit">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+            <input type="hidden" asp-for="ID" />
+            <input type="hidden" asp-for="UserInfoID" />
+            <input id="carIDHiddenInput" type="hidden" asp-for="CarID" />
+        </form>
+    </div>
+</div>
+
+<div id="availableCarsContainer" class="container justify-content-center d-flex flex-wrap">
+    @await Html.PartialAsync("_FindAvailableCars", availableCars)
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+

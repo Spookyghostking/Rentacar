@@ -9,5 +9,6 @@ namespace Rentacar.Services.Interfaces
         CarDataModel Insert(CarDataModel car);
         CarDataModel Update(CarDataModel car);
         bool Delete(CarDataModel car);
+        IEnumerable<CarDataModel> GetAvailable(DateTime reservationBegin, DateTime reservationEnd);
     }
 }

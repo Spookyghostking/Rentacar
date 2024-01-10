@@ -1,12 +1,11 @@
-﻿using Rentacar.DataModels;
-
-namespace Rentacar.BusinessModels.Reservation
+﻿namespace Rentacar.BusinessModels.Reservation
 {
-    public class ReservationCreateBusinessModel
+    public class ReservationEditBusinessModel
     {
-        //public int ID { get; set; }
+        public int ID { get; set; }
         public int UserInfoID { get; set; }
         public int CarID { get; set; }
+        public int StatusID { get; set; }
         public DateTime ReservationBegin { get; set; }
         public DateTime ReservationEnd { get; set; }
     }

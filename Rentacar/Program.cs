@@ -35,6 +35,7 @@ namespace Rentacar
                 options.AddProfile<UserInfoProfile>();
                 options.AddProfile<IdentificationDocumentImageProfile>();
                 options.AddProfile<IdentificationDocumentTypeProfile>();
+                options.AddProfile<ReservationProfile>();
             });
 
             builder.Services.AddScoped<ICarService, DbCarService>();
@@ -44,12 +45,15 @@ namespace Rentacar
             builder.Services.AddScoped<IUserInfoService, DbUserInfoService>();
             builder.Services.AddScoped<IIdentificationDocumentImageService, DbIdentificationDocumentImageService>();
             builder.Services.AddScoped<IIdentificationDocumentTypeService, DbIdentificationDocumentTypeService>();
+            builder.Services.AddScoped<IReservationService, DbReservationService>();
+            builder.Services.AddScoped<IReservationStatusService, DbReservationStatusService>();
             builder.Services.AddScoped<ICarBusinessLogic, CarBusinessLogic>();
             builder.Services.AddScoped<ICarModelBusinessLogic, CarModelBusinessLogic>();
             builder.Services.AddScoped<ICarImageBusinessLogic, CarImageBusinessLogic>();
             builder.Services.AddScoped<ICarManufacturerBusinessLogic, CarManufacturerBusinessLogic>();
             builder.Services.AddScoped<IUserInfoBusinessLogic, UserInfoBusinessLogic>();
             builder.Services.AddScoped<IIdentificationDocumentTypeBusinessLogic, IdentificationDocumentTypeBusinessLogic>();
+            builder.Services.AddScoped<IReservationBusinessLogic, ReservationBusinessLogic>();
 
             builder.Services.AddControllersWithViews();
 

@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using Rentacar.BusinessLogic.Interfaces;
 using Rentacar.BusinessModels.Car;
+using Rentacar.BusinessModels.Reservation;
 using Rentacar.DataModels;
 using Rentacar.Services.Interfaces;
 
@@ -66,6 +67,18 @@ namespace Rentacar.BusinessLogic
         {
             CarDataModel car = _cars.GetById(id);
             return _cars.Delete(car);
+        }
+
+        public IEnumerable<CarDetailsBusinessModel> GetAvailable(ReservationCreateBusinessModel reservation)
+        {
+            IEnumerable<CarDataModel> availableCars = _cars.GetAvailable(reservation.ReservationBegin, reservation.ReservationEnd);
+            return _mapper.Map<IEnumerable<CarDetailsBusinessModel>>(availableCars);
+        }
+
+        public IEnumerable<CarDetailsBusinessModel> GetAvailable(ReservationEditBusinessModel reservation)
+        {
+            IEnumerable<CarDataModel> availableCars = _cars.GetAvailable(reservation.ReservationBegin, reservation.ReservationEnd);
+            return _mapper.Map<IEnumerable<CarDetailsBusinessModel>>(availableCars);
         }
     }
 }

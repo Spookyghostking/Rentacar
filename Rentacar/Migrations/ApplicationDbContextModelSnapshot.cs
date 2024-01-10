@@ -270,9 +270,9 @@ namespace Rentacar.Migrations
                             ID = 1,
                             CarModelID = 1,
                             CodeName = "Billy",
-                            DailyFee = 20f,
-                            DateAdded = new DateTime(2023, 9, 20, 6, 52, 55, 303, DateTimeKind.Local).AddTicks(2178),
-                            FixedFee = 20f,
+                            DailyFee = 30f,
+                            DateAdded = new DateTime(2024, 1, 10, 2, 11, 44, 628, DateTimeKind.Local).AddTicks(46),
+                            FixedFee = 30f,
                             LicencePlateNumber = "HB1840BS",
                             ManufacturedYear = 2002
                         },
@@ -281,8 +281,8 @@ namespace Rentacar.Migrations
                             ID = 2,
                             CarModelID = 2,
                             CodeName = "Sam",
-                            DailyFee = 25f,
-                            DateAdded = new DateTime(2023, 9, 20, 6, 52, 55, 303, DateTimeKind.Local).AddTicks(2222),
+                            DailyFee = 30f,
+                            DateAdded = new DateTime(2024, 1, 10, 2, 11, 44, 628, DateTimeKind.Local).AddTicks(91),
                             FixedFee = 30f,
                             LicencePlateNumber = "70UGHC4R",
                             ManufacturedYear = 2008
@@ -293,8 +293,8 @@ namespace Rentacar.Migrations
                             CarModelID = 3,
                             CodeName = "Sean",
                             DailyFee = 30f,
-                            DateAdded = new DateTime(2023, 9, 20, 6, 52, 55, 303, DateTimeKind.Local).AddTicks(2224),
-                            FixedFee = 40f,
+                            DateAdded = new DateTime(2024, 1, 10, 2, 11, 44, 628, DateTimeKind.Local).AddTicks(94),
+                            FixedFee = 30f,
                             LicencePlateNumber = "CR055",
                             ManufacturedYear = 2010
                         },
@@ -303,9 +303,9 @@ namespace Rentacar.Migrations
                             ID = 4,
                             CarModelID = 4,
                             CodeName = "Henry",
-                            DailyFee = 10f,
-                            DateAdded = new DateTime(2023, 9, 20, 6, 52, 55, 303, DateTimeKind.Local).AddTicks(2226),
-                            FixedFee = 12f,
+                            DailyFee = 30f,
+                            DateAdded = new DateTime(2024, 1, 10, 2, 11, 44, 628, DateTimeKind.Local).AddTicks(95),
+                            FixedFee = 30f,
                             LicencePlateNumber = "S4D801",
                             ManufacturedYear = 1996
                         });

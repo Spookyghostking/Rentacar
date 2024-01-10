@@ -8,7 +8,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace Rentacar.Migrations
 {
     /// <inheritdoc />
-    public partial class _000000_Initial : Migration
+    public partial class Inital_000000 : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -397,10 +397,10 @@ namespace Rentacar.Migrations
                 columns: new[] { "ID", "CarModelID", "CodeName", "DailyFee", "DateAdded", "FixedFee", "LicencePlateNumber", "ManufacturedYear" },
                 values: new object[,]
                 {
-                    { 1, 1, "Billy", 20f, new DateTime(2023, 9, 20, 6, 52, 55, 303, DateTimeKind.Local).AddTicks(2178), 20f, "HB1840BS", 2002 },
-                    { 2, 2, "Sam", 25f, new DateTime(2023, 9, 20, 6, 52, 55, 303, DateTimeKind.Local).AddTicks(2222), 30f, "70UGHC4R", 2008 },
-                    { 3, 3, "Sean", 30f, new DateTime(2023, 9, 20, 6, 52, 55, 303, DateTimeKind.Local).AddTicks(2224), 40f, "CR055", 2010 },
-                    { 4, 4, "Henry", 10f, new DateTime(2023, 9, 20, 6, 52, 55, 303, DateTimeKind.Local).AddTicks(2226), 12f, "S4D801", 1996 }
+                    { 1, 1, "Billy", 30f, new DateTime(2024, 1, 10, 2, 11, 44, 628, DateTimeKind.Local).AddTicks(46), 30f, "HB1840BS", 2002 },
+                    { 2, 2, "Sam", 30f, new DateTime(2024, 1, 10, 2, 11, 44, 628, DateTimeKind.Local).AddTicks(91), 30f, "70UGHC4R", 2008 },
+                    { 3, 3, "Sean", 30f, new DateTime(2024, 1, 10, 2, 11, 44, 628, DateTimeKind.Local).AddTicks(94), 30f, "CR055", 2010 },
+                    { 4, 4, "Henry", 30f, new DateTime(2024, 1, 10, 2, 11, 44, 628, DateTimeKind.Local).AddTicks(95), 30f, "S4D801", 1996 }
                 });
 
             migrationBuilder.InsertData(

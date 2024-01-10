@@ -5,6 +5,8 @@
     <div class="card" style="width: 18rem;">
         @await Html.PartialAsync("_ImageCarousel", car.Images)
         <div class="card-body">
+            <p>@car.CodeName</p>
+            <button class="btn btn-primary reservationCreateCarSelect" value="@car.ID">Select</button>
         </div>
     </div>
 }
