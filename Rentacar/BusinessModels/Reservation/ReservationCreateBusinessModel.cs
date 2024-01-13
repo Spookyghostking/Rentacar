@@ -1,5 +1,6 @@
 ﻿using Rentacar.DataModels;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Rentacar.BusinessModels.Reservation
 {
@@ -14,5 +15,7 @@ namespace Rentacar.BusinessModels.Reservation
         public DateTime ReservationBegin { get; set; }
         [Required]
         public DateTime ReservationEnd { get; set; }
+        [NotMapped]
+        public int CarTypeID { get; set; }
     }
 }

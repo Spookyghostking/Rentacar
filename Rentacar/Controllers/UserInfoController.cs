@@ -1,10 +1,12 @@
-﻿using Microsoft.AspNetCore.Identity;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Rentacar.BusinessLogic.Interfaces;
 using Rentacar.BusinessModels.UserInfo;
 
 namespace Rentacar.Controllers
 {
+    [Authorize]
     public class UserInfoController : Controller
     {
         private readonly UserManager<IdentityUser> _userManager;

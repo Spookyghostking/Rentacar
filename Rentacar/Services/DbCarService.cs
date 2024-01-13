@@ -74,5 +74,28 @@ namespace Rentacar.Services
             }
             return cars;
         }
+
+        public IEnumerable<CarDataModel> GetAvailable(DateTime reservationBegin, DateTime reservationEnd, int carBodyTypeID)
+        {
+            List<CarDataModel> cars = new List<CarDataModel>();
+            IQueryable<CarDataModel> carsQ = _database.Cars
+                .Include(c => c.Images)
+                .Include(c => c.CarModel)
+                .Include(c => c.CarModel.Manufacturer)
+                .Include(c => c.CarBodyType);
+            carsQ = carsQ.Where(c => c.CarBodyType.ID == carBodyTypeID);
+            foreach (var car in carsQ.ToList())
+            {
+                bool isReserved = _database.Reservations.Where(r => r.Car.ID == car.ID).Any(r =>
+                    (reservationBegin >= r.ReservationBegin && r.ReservationEnd >= reservationBegin) ||
+                    (reservationEnd >= r.ReservationBegin && r.ReservationEnd >= reservationEnd));
+                //Console.WriteLine("\n\n");
+                //Console.WriteLine(isReserved);
+                //Console.WriteLine("\n\n");
+                if (!isReserved)
+                    cars.Add(car);
+            }
+            return cars;
+        }
     }
 }

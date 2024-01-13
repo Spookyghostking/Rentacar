@@ -26,14 +26,16 @@ $(function () {
             //console.log("button.ispressed = true")
             var reservationBegin = $("#ReservationBegin").val();
             var reservationEnd = $("#ReservationEnd").val();
-            console.log("message about to sent");
+            var carTypeID = $("#carTypeFilter").val();
+            console.log(carTypeID);
             $.ajax({
 
                 url: "/Reservation/FindAvailableCars",
                 method: "GET",
                 data: {
                     "ReservationBegin": reservationBegin,
-                    "ReservationEnd": reservationEnd
+                    "ReservationEnd": reservationEnd,
+                    "CarTypeID": carTypeID
                 },
                 success: function (data) {
                     console.log(data);

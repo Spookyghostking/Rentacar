@@ -1,9 +1,16 @@
 ﻿@model Rentacar.BusinessModels.Reservation.ReservationCreateBusinessModel
 
+
 <h4>ReservationDataModel</h4>
 <hr />
 <div class="row">
     <div class="col-md-4">
+        <div class="col-auto">
+            <select class="form-control" id="carTypeFilter" asp-items="@ViewBag.CarTypes">
+                <option disabled selected>Pick car type</option>
+            </select>
+            <label for="carTypeFilter">Car Type</label>
+        </div>
         <form asp-action="Create">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
 

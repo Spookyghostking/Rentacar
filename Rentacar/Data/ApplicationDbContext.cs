@@ -113,7 +113,11 @@ namespace Rentacar.Data
             builder.Entity<CarImageDataModel>()
                 .HasData(new List<object>()
                 {
-                    new { ID = 1, Url = "/img/Car/Test.png", CarID = 1 }
+                    new { ID = 1, Url = "/img/Car/Test.png", CarID = 1 },
+                    new { ID = 2, Url = "/img/Car/cor.jpg", CarID = 2 },
+                    new { ID = 3, Url = "/img/Car/Cross1.jpg", CarID = 3 },
+                    new { ID = 4, Url = "/img/Car/Cross2.jpg", CarID = 3 },
+                    new { ID = 5, Url = "/img/Car/Sierra.jpg", CarID = 4 }
                 });
             builder.Entity<IdentificationDocumentTypeDataModel>()
                 .HasData(new List<object>()

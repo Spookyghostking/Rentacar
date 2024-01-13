@@ -342,7 +342,7 @@ namespace Rentacar.Migrations
                             CarModelID = 1,
                             CodeName = "Billy",
                             DailyFee = 30f,
-                            DateAdded = new DateTime(2024, 1, 13, 6, 9, 39, 914, DateTimeKind.Local).AddTicks(6477),
+                            DateAdded = new DateTime(2024, 1, 13, 9, 1, 5, 45, DateTimeKind.Local).AddTicks(2384),
                             FixedFee = 30f,
                             LicencePlateNumber = "HB1840BS",
                             ManufacturedYear = 2002,
@@ -355,7 +355,7 @@ namespace Rentacar.Migrations
                             CarModelID = 2,
                             CodeName = "Sam",
                             DailyFee = 30f,
-                            DateAdded = new DateTime(2024, 1, 13, 6, 9, 39, 914, DateTimeKind.Local).AddTicks(6520),
+                            DateAdded = new DateTime(2024, 1, 13, 9, 1, 5, 45, DateTimeKind.Local).AddTicks(2429),
                             FixedFee = 30f,
                             LicencePlateNumber = "70UGHC4R",
                             ManufacturedYear = 2008,
@@ -368,7 +368,7 @@ namespace Rentacar.Migrations
                             CarModelID = 3,
                             CodeName = "Sean",
                             DailyFee = 30f,
-                            DateAdded = new DateTime(2024, 1, 13, 6, 9, 39, 914, DateTimeKind.Local).AddTicks(6522),
+                            DateAdded = new DateTime(2024, 1, 13, 9, 1, 5, 45, DateTimeKind.Local).AddTicks(2431),
                             FixedFee = 30f,
                             LicencePlateNumber = "CR055",
                             ManufacturedYear = 2010,
@@ -381,7 +381,7 @@ namespace Rentacar.Migrations
                             CarModelID = 4,
                             CodeName = "Henry",
                             DailyFee = 30f,
-                            DateAdded = new DateTime(2024, 1, 13, 6, 9, 39, 914, DateTimeKind.Local).AddTicks(6525),
+                            DateAdded = new DateTime(2024, 1, 13, 9, 1, 5, 45, DateTimeKind.Local).AddTicks(2433),
                             FixedFee = 30f,
                             LicencePlateNumber = "S4D801",
                             ManufacturedYear = 1996,
@@ -417,6 +417,30 @@ namespace Rentacar.Migrations
                             ID = 1,
                             CarID = 1,
                             Url = "/img/Car/Test.png"
+                        },
+                        new
+                        {
+                            ID = 2,
+                            CarID = 2,
+                            Url = "/img/Car/cor.jpg"
+                        },
+                        new
+                        {
+                            ID = 3,
+                            CarID = 3,
+                            Url = "/img/Car/Cross1.jpg"
+                        },
+                        new
+                        {
+                            ID = 4,
+                            CarID = 3,
+                            Url = "/img/Car/Cross2.jpg"
+                        },
+                        new
+                        {
+                            ID = 5,
+                            CarID = 4,
+                            Url = "/img/Car/Sierra.jpg"
                         });
                 });
 

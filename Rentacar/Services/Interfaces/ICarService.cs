@@ -10,5 +10,6 @@ namespace Rentacar.Services.Interfaces
         CarDataModel Update(CarDataModel car);
         bool Delete(CarDataModel car);
         IEnumerable<CarDataModel> GetAvailable(DateTime reservationBegin, DateTime reservationEnd);
+        IEnumerable<CarDataModel> GetAvailable(DateTime reservationBegin, DateTime reservationEnd, int carBodyTypeID);
     }
 }

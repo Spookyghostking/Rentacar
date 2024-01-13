@@ -75,7 +75,14 @@ namespace Rentacar.BusinessLogic
 
         public IEnumerable<CarDetailsBusinessModel> GetAvailable(ReservationCreateBusinessModel reservation)
         {
-            IEnumerable<CarDataModel> availableCars = _cars.GetAvailable(reservation.ReservationBegin, reservation.ReservationEnd);
+            IEnumerable<CarDataModel> availableCars;
+            if (reservation.CarTypeID != null && reservation.CarTypeID > 0)
+            {
+                availableCars = _cars.GetAvailable(reservation.ReservationBegin, reservation.ReservationEnd, reservation.CarTypeID);
+            } else
+            {
+                availableCars = _cars.GetAvailable(reservation.ReservationBegin, reservation.ReservationEnd);
+            }
             return _mapper.Map<IEnumerable<CarDetailsBusinessModel>>(availableCars);
         }
 

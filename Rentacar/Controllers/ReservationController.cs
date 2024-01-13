@@ -12,17 +12,20 @@ namespace Rentacar.Controllers
         private readonly ICarBusinessLogic _cars;
         private readonly IReservationBusinessLogic _reservations;
         private readonly IUserInfoBusinessLogic _userInfo;
+        private readonly ICarBodyTypeBusinessLogic _carTypes;
         private readonly UserManager<IdentityUser> _userManager;
 
         public ReservationController(
             ICarBusinessLogic cars,
             IReservationBusinessLogic reservations,
             IUserInfoBusinessLogic userInfo,
+            ICarBodyTypeBusinessLogic carTypes,
             UserManager<IdentityUser> userManager)
         {
             _cars = cars;
             _reservations = reservations;
             _userInfo = userInfo;
+            _carTypes = carTypes;
             _userManager = userManager;
         }
 
@@ -70,6 +73,7 @@ namespace Rentacar.Controllers
         [HttpGet]
         public IActionResult Create(int id)
         {
+            ViewBag.CarTypes = _carTypes.GetSelectListItems();
             ReservationCreateBusinessModel reservation = new ReservationCreateBusinessModel();
             reservation.UserInfoID = id;
             return View(reservation);
@@ -124,7 +128,6 @@ namespace Rentacar.Controllers
             //Console.WriteLine($"The start date is {reservation.ReservationBegin}");
             IEnumerable<CarDetailsBusinessModel> cars =  _cars.GetAvailable(reservation);
             return PartialView("_FindAvailableCars", cars);
-            return Json("poop");
         }
 
         public IActionResult CarDetailsModal(int id)
