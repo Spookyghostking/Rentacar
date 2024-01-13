@@ -1,0 +1,40 @@
+﻿@using Rentacar.BusinessModels.Reservation
+@using Rentacar.Services.Enums
+@model IEnumerable<ReservationDetailsBusinessModel>
+
+<h4>Manage Reservations</h4>
+<table class="table">
+    <thead>
+        <tr>
+            <th>@Html.DisplayNameFor(model => model.ID)</th>
+            <th>@Html.DisplayNameFor(model => model.ReservationBegin)</th>
+            <th>@Html.DisplayNameFor(model => model.ReservationEnd)</th>
+            <th>@Html.DisplayNameFor(model => model.CarID)</th>
+            <th>@Html.DisplayNameFor(model => model.UserInfoID)</th>
+            <th>@Html.DisplayNameFor(model => model.StatusValue)</th>
+            <th></th>
+        </tr>
+    </thead>
+    @foreach(ReservationDetailsBusinessModel reservation in Model)
+    {
+        <tr>
+            <td>@Html.DisplayFor(model => reservation.ID)</td>
+            <td>@Html.DisplayFor(model => reservation.ReservationBegin)</td>
+            <td>@Html.DisplayFor(model => reservation.ReservationEnd)</td>
+            <td>@Html.DisplayFor(model => reservation.CarID)</td>
+            <td>@Html.DisplayFor(model => reservation.UserInfoID)</td>
+            <td>@Html.DisplayFor(model => reservation.StatusValue)</td>
+            <td>
+                <a class="btn btn-primary" asp-action="Details" asp-route-id="@reservation.ID">Details</a>
+                <a class="btn btn-warning" asp-action="Edit" asp-route-id="@reservation.ID">Edit</a>
+                @if (reservation.StatusValue.ToLower() == ReservationStatuses.Remove.ToString().ToLower())
+                {
+                    <a class="btn btn-danger" asp-action="Delete" asp-route-id="@reservation.ID">Delete Permanently</a>
+                } else
+                {
+                    <a class="btn btn-danger" asp-action="Delete" asp-route-id="@reservation.ID">Delete</a>
+                }
+            </td>
+        </tr>
+    }
+</table>

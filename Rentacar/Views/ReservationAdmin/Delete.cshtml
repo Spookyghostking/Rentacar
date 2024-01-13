@@ -1,0 +1,68 @@
+﻿@using Rentacar.Services.Enums
+@model Rentacar.BusinessModels.Reservation.ReservationDetailsBusinessModel
+
+<div>
+    @if (Model.StatusValue.ToLower() == "cart")
+    {
+        <h4>Confirm Reservation Details</h4>
+    }
+    else
+    {
+        <h4>Overview</h4>
+    }
+    <hr />
+    <dl class="row">
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.ID)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.ID)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.ReservationBegin)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.ReservationBegin)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.ReservationEnd)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.ReservationEnd)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.CarID)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.CarID)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.UserInfoID)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.UserInfoID)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.StatusValue)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.StatusValue)
+        </dd>
+    </dl>
+</div>
+@if (Model.StatusValue.ToLower() == ReservationStatuses.Remove.ToString().ToLower())
+{
+    <p class="alert alert-danger">Entry will be permanently removed from database. Are you sure?</p>
+}
+<div>
+    <form method="post">
+        <input type="hidden" asp-for="ID" />
+        <input type="hidden" asp-for="ReservationBegin" />
+        <input type="hidden" asp-for="ReservationEnd" />
+        <input type="hidden" asp-for="CarID" />
+        <input type="hidden" asp-for="UserInfoID" />
+        <input type="hidden" asp-for="StatusValue" />
+        <a class="btn btn-primary" asp-action="Index">Cancel</a>
+        <input class="btn btn-danger" type="submit" value="Delete" />
+    </form>
+</div>

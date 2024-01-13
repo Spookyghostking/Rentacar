@@ -1,10 +1,12 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using Rentacar.BusinessLogic.Interfaces;
 using Rentacar.BusinessModels.CarImage;
 using Rentacar.Services.Interfaces;
 
 namespace Rentacar.Controllers
 {
+    [Authorize(Roles = "Admin")]
     public class CarImageAdminController : Controller
     {
         private readonly ICarImageBusinessLogic _images;

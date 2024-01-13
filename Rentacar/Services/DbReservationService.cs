@@ -2,16 +2,20 @@
 using Rentacar.Data;
 using Rentacar.DataModels;
 using Rentacar.Services.Interfaces;
+using Rentacar.Services.Enums;
 
 namespace Rentacar.Services
 {
-    enum ReservationStatuses
+    namespace Enums
     {
-        Cart = 1,
-        Reserved,
-        Active,
-        Archived,
-        Remove
+        enum ReservationStatuses
+        {
+            Cart = 1,
+            Reserved,
+            Active,
+            Archived,
+            Remove
+        }
     }
 
     public class DbReservationService : IReservationService
@@ -40,6 +44,17 @@ namespace Rentacar.Services
                 .FirstOrDefault(r => r.ID == id);
         }
 
+        public IEnumerable<ReservationDataModel> GetbyUser(string userID)
+        {
+            IEnumerable<ReservationDataModel> reservations = _database.Reservations
+                .Include(r => r.Car)
+                .Include(r => r.Status)
+                .Include(r => r.UserInfo)
+                .Include(r => r.UserInfo.User)
+                .Where(r => r.UserInfo.User.Id == userID);
+            return reservations;
+        }
+
         public ReservationDataModel Insert(ReservationDataModel reservation)
         {
             _database.Reservations.Add(reservation);
@@ -56,7 +71,8 @@ namespace Rentacar.Services
 
         public bool Delete(ReservationDataModel reservation)
         {
-            if (reservation.Status.ID == (int)ReservationStatuses.Cart)
+            if (reservation.Status.ID == (int)ReservationStatuses.Cart ||
+                reservation.Status.ID == (int)ReservationStatuses.Remove)
             {
                 _database.Remove(reservation);
                 _database.SaveChanges(true);

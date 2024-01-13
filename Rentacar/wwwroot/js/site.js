@@ -46,4 +46,21 @@ $(function () {
             $("form").submit();
         }
     });
+
+    $(document).on("click", ".car-details", function () {
+        $(".modal-title").html("Car details");
+        $("#modalConfirm").html("Choose");
+        $("#modalConfirm").val(this.value);
+        $("#modalConfirm").attr("class", "btn btn-primary reservationCreateCarSelect");
+        $.ajax({
+            url: "/Reservation/CarDetailsModal",
+            method: "GET",
+            data: {
+                ID: parseInt(this.value)
+            },
+            success: function (data) {
+                $("#modalBody").html(data);
+            }
+        });
+    });
 });

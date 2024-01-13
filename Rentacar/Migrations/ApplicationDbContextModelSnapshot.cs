@@ -224,6 +224,66 @@ namespace Rentacar.Migrations
                     b.ToTable("AspNetUserTokens", (string)null);
                 });
 
+            modelBuilder.Entity("Rentacar.DataModels.CarBodyTypeDataModel", b =>
+                {
+                    b.Property<int>("ID")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ID"));
+
+                    b.Property<string>("Value")
+                        .IsRequired()
+                        .HasMaxLength(20)
+                        .HasColumnType("nvarchar(20)");
+
+                    b.HasKey("ID");
+
+                    b.ToTable("CarBodyTypes");
+
+                    b.HasData(
+                        new
+                        {
+                            ID = 1,
+                            Value = "Sports"
+                        },
+                        new
+                        {
+                            ID = 2,
+                            Value = "Coupe"
+                        },
+                        new
+                        {
+                            ID = 3,
+                            Value = "Pickup"
+                        },
+                        new
+                        {
+                            ID = 4,
+                            Value = "Sedan"
+                        },
+                        new
+                        {
+                            ID = 5,
+                            Value = "Hatchback"
+                        },
+                        new
+                        {
+                            ID = 6,
+                            Value = "SUV"
+                        },
+                        new
+                        {
+                            ID = 7,
+                            Value = "Wagon"
+                        },
+                        new
+                        {
+                            ID = 8,
+                            Value = "Minivan"
+                        });
+                });
+
             modelBuilder.Entity("Rentacar.DataModels.CarDataModel", b =>
                 {
                     b.Property<int>("ID")
@@ -232,12 +292,16 @@ namespace Rentacar.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ID"));
 
+                    b.Property<int>("CarBodyTypeID")
+                        .HasColumnType("int");
+
                     b.Property<int>("CarModelID")
                         .HasColumnType("int");
 
                     b.Property<string>("CodeName")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(55)
+                        .HasColumnType("nvarchar(55)");
 
                     b.Property<float>("DailyFee")
                         .HasColumnType("real");
@@ -250,12 +314,18 @@ namespace Rentacar.Migrations
 
                     b.Property<string>("LicencePlateNumber")
                         .IsRequired()
-                        .HasColumnType("nvarchar(450)");
+                        .HasMaxLength(25)
+                        .HasColumnType("nvarchar(25)");
 
                     b.Property<int>("ManufacturedYear")
                         .HasColumnType("int");
 
+                    b.Property<int>("SeatCount")
+                        .HasColumnType("int");
+
                     b.HasKey("ID");
+
+                    b.HasIndex("CarBodyTypeID");
 
                     b.HasIndex("CarModelID");
 
@@ -268,46 +338,54 @@ namespace Rentacar.Migrations
                         new
                         {
                             ID = 1,
+                            CarBodyTypeID = 4,
                             CarModelID = 1,
                             CodeName = "Billy",
                             DailyFee = 30f,
-                            DateAdded = new DateTime(2024, 1, 10, 2, 11, 44, 628, DateTimeKind.Local).AddTicks(46),
+                            DateAdded = new DateTime(2024, 1, 13, 6, 9, 39, 914, DateTimeKind.Local).AddTicks(6477),
                             FixedFee = 30f,
                             LicencePlateNumber = "HB1840BS",
-                            ManufacturedYear = 2002
+                            ManufacturedYear = 2002,
+                            SeatCount = 5
                         },
                         new
                         {
                             ID = 2,
+                            CarBodyTypeID = 4,
                             CarModelID = 2,
                             CodeName = "Sam",
                             DailyFee = 30f,
-                            DateAdded = new DateTime(2024, 1, 10, 2, 11, 44, 628, DateTimeKind.Local).AddTicks(91),
+                            DateAdded = new DateTime(2024, 1, 13, 6, 9, 39, 914, DateTimeKind.Local).AddTicks(6520),
                             FixedFee = 30f,
                             LicencePlateNumber = "70UGHC4R",
-                            ManufacturedYear = 2008
+                            ManufacturedYear = 2008,
+                            SeatCount = 5
                         },
                         new
                         {
                             ID = 3,
+                            CarBodyTypeID = 6,
                             CarModelID = 3,
                             CodeName = "Sean",
                             DailyFee = 30f,
-                            DateAdded = new DateTime(2024, 1, 10, 2, 11, 44, 628, DateTimeKind.Local).AddTicks(94),
+                            DateAdded = new DateTime(2024, 1, 13, 6, 9, 39, 914, DateTimeKind.Local).AddTicks(6522),
                             FixedFee = 30f,
                             LicencePlateNumber = "CR055",
-                            ManufacturedYear = 2010
+                            ManufacturedYear = 2010,
+                            SeatCount = 5
                         },
                         new
                         {
                             ID = 4,
+                            CarBodyTypeID = 4,
                             CarModelID = 4,
                             CodeName = "Henry",
                             DailyFee = 30f,
-                            DateAdded = new DateTime(2024, 1, 10, 2, 11, 44, 628, DateTimeKind.Local).AddTicks(95),
+                            DateAdded = new DateTime(2024, 1, 13, 6, 9, 39, 914, DateTimeKind.Local).AddTicks(6525),
                             FixedFee = 30f,
                             LicencePlateNumber = "S4D801",
-                            ManufacturedYear = 1996
+                            ManufacturedYear = 1996,
+                            SeatCount = 5
                         });
                 });
 
@@ -324,7 +402,8 @@ namespace Rentacar.Migrations
 
                     b.Property<string>("Url")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(512)
+                        .HasColumnType("nvarchar(512)");
 
                     b.HasKey("ID");
 
@@ -351,7 +430,8 @@ namespace Rentacar.Migrations
 
                     b.Property<string>("Name")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(55)
+                        .HasColumnType("nvarchar(55)");
 
                     b.HasKey("ID");
 
@@ -383,7 +463,8 @@ namespace Rentacar.Migrations
 
                     b.Property<string>("Name")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(55)
+                        .HasColumnType("nvarchar(55)");
 
                     b.HasKey("ID");
 
@@ -428,7 +509,8 @@ namespace Rentacar.Migrations
 
                     b.Property<string>("Url")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(512)
+                        .HasColumnType("nvarchar(512)");
 
                     b.Property<int>("UserInfoID")
                         .HasColumnType("int");
@@ -450,7 +532,8 @@ namespace Rentacar.Migrations
 
                     b.Property<string>("Value")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(55)
+                        .HasColumnType("nvarchar(55)");
 
                     b.HasKey("ID");
 
@@ -526,7 +609,8 @@ namespace Rentacar.Migrations
 
                     b.Property<string>("Value")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(20)
+                        .HasColumnType("nvarchar(20)");
 
                     b.HasKey("ID");
 
@@ -570,29 +654,34 @@ namespace Rentacar.Migrations
 
                     b.Property<string>("AddressOfResidence")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(256)
+                        .HasColumnType("nvarchar(256)");
 
                     b.Property<DateTime>("DateOfBirth")
                         .HasColumnType("datetime2");
 
                     b.Property<string>("FirstName")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(55)
+                        .HasColumnType("nvarchar(55)");
 
                     b.Property<string>("IdentificationNumber")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(128)
+                        .HasColumnType("nvarchar(128)");
 
                     b.Property<int>("IdentificationTypeID")
                         .HasColumnType("int");
 
                     b.Property<string>("LastName")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(55)
+                        .HasColumnType("nvarchar(55)");
 
                     b.Property<string>("PhoneNumber")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(20)
+                        .HasColumnType("nvarchar(20)");
 
                     b.Property<string>("UserId")
                         .HasColumnType("nvarchar(450)");
@@ -659,11 +748,19 @@ namespace Rentacar.Migrations
 
             modelBuilder.Entity("Rentacar.DataModels.CarDataModel", b =>
                 {
+                    b.HasOne("Rentacar.DataModels.CarBodyTypeDataModel", "CarBodyType")
+                        .WithMany()
+                        .HasForeignKey("CarBodyTypeID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
                     b.HasOne("Rentacar.DataModels.CarModelDataModel", "CarModel")
                         .WithMany()
                         .HasForeignKey("CarModelID")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+
+                    b.Navigation("CarBodyType");
 
                     b.Navigation("CarModel");
                 });

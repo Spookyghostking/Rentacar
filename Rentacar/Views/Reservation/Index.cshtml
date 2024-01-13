@@ -1,0 +1,60 @@
+﻿@model List<Rentacar.BusinessModels.Reservation.ReservationDetailsBusinessModel>
+
+<h4> Your reservations </h4>
+
+@if (!(Model.Count > 0))
+{
+    <h5>You have not reserved any cars.</h5>
+    <a class="btn btn-primary" asp-controller="UserInfo" asp-action="Index">Reserve a car</a>
+} else
+{
+    @for (int i = 0; i < Model.Count; i++)
+    {
+        <hr />
+        <dl class="row">
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model[i].ID)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model[i].ID)
+            </dd>
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model[i].ReservationBegin)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model[i].ReservationBegin)
+            </dd>
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model[i].ReservationEnd)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model[i].ReservationEnd)
+            </dd>
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model[i].CarID)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model[i].CarID)
+            </dd>
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model[i].UserInfoID)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model[i].UserInfoID)
+            </dd>
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model[i].StatusValue)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model[i].StatusValue)
+            </dd>
+        </dl>
+        if (Model[i].StatusValue.ToLower() == "cart")
+        {
+            <p class="alert alert-warning" >Reservation pending confirmation from user. Go to details to confirm reservation.</p>
+        }
+        <p>
+            <a class="btn btn-primary" asp-action="Details" asp-route-ID="@Model[i].ID">Details</a>
+        </p>
+    }
+}

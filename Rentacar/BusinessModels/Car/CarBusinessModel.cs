@@ -1,4 +1,5 @@
-﻿using Rentacar.BusinessModels.CarModel;
+﻿using Rentacar.BusinessModels.CarBodyType;
+using Rentacar.BusinessModels.CarModel;
 
 namespace Rentacar.BusinessModels.Car
 {
@@ -6,6 +7,7 @@ namespace Rentacar.BusinessModels.Car
     {
         public string LicencePlateNumber { get; set; }
         public CarModelBusinessModel CarModel { get; set; }
+        public CarBodyTypeBusinessModel CarBodyType { get; set; }
         public IFormFileCollection Images { get; set; }
         public DateTime ManufacturedDate { get; set; }
     }

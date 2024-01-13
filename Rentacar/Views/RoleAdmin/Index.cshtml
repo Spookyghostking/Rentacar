@@ -1,0 +1,28 @@
+﻿@using Microsoft.AspNetCore.Identity
+@model IEnumerable<IdentityRole>
+
+<h4>Role list</h4>
+<br />
+<a class="btn btn-light" asp-action="Create">Add role</a> | <a class="btn btn-light" asp-action="UserRoles">Assign roles</a>
+<table class="table">
+    <thead>
+        <tr>
+            <th>@Html.DisplayNameFor(model => model.Id)</th>
+            <th>@Html.DisplayNameFor(model => model.Name)</th>
+            <th></th>
+        </tr>
+    </thead>
+    @foreach(IdentityRole role in Model)
+    {
+        <tr>
+            <td>@Html.DisplayFor(m => role.Id)</td>
+            <td>@Html.DisplayFor(m => role.Name)</td>
+            <td>
+@* 
+                <a class="btn btn-warning" asp-action="Edit" asp-route-id="@role.Id">Edit</a>
+                 *@
+                <a class="btn btn-danger" asp-action="Delete" asp-route-id="@role.Id">Delete</a>
+            </td>
+        </tr>
+    }
+</table>

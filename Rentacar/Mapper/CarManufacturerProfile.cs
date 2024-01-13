@@ -11,6 +11,7 @@ namespace Rentacar.Mapper
             CreateMap<CarManufacturerDataModel, CarManufacturerBusinessModel>();
             CreateMap<CarManufacturerBusinessModel, CarManufacturerDataModel>();
             // I approve of this
+            CreateMap<CarManufacturerCreateBusinessModel, CarManufacturerDataModel>();
         }
     }
 }

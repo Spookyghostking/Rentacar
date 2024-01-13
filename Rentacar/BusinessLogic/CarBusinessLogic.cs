@@ -13,17 +13,20 @@ namespace Rentacar.BusinessLogic
         private readonly ICarService _cars;
         private readonly ICarModelService _carModels;
         private readonly ICarImageService _carImages;
+        private readonly ICarBodyTypeService _carTypes;
 
         public CarBusinessLogic(
             IMapper mapper, 
             ICarService cars, 
             ICarModelService carModels,
-            ICarImageService carImages)
+            ICarImageService carImages,
+            ICarBodyTypeService carTypes)
         {
             _mapper = mapper;
             _cars = cars;
             _carModels = carModels;
             _carImages = carImages;
+            _carTypes = carTypes;
         }
 
         public IEnumerable<CarListBusinessModel> GetAll()
@@ -51,6 +54,7 @@ namespace Rentacar.BusinessLogic
         {
             CarDataModel carData = _mapper.Map<CarDataModel>(carBusiness);
             carData.CarModel = _carModels.GetById(carBusiness.CarModelID);
+            carData.CarBodyType = _carTypes.GetById(carBusiness.CarBodyTypeID);
             carData = _cars.Insert(carData);
             return carData;
         }

@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Rentacar.BusinessLogic.Interfaces;
 using Rentacar.BusinessModels.CarManufacturer;
@@ -7,6 +8,7 @@ using Rentacar.Services.Interfaces;
 
 namespace Rentacar.Controllers
 {
+    [Authorize(Roles = "Admin")]
     public class CarManufacturerAdminController : Controller
     {
         private readonly IMapper mapper;
@@ -34,9 +36,9 @@ namespace Rentacar.Controllers
             return View();
         }
         [HttpPost]
-        public IActionResult Create(CarManufacturerBusinessModel car)
+        public IActionResult Create(CarManufacturerCreateBusinessModel manufacturer)
         {
-            _carManufacturers.Insert(car);
+            _carManufacturers.Insert(manufacturer);
             return RedirectToAction("Index");
         }
 

@@ -16,12 +16,19 @@ namespace Rentacar.Services
 
         public IEnumerable<CarDataModel> GetAll()
         {
-            return _database.Cars.Include(c => c.CarModel).Include(c => c.CarModel.Manufacturer);
+            return _database.Cars
+                .Include(c => c.CarModel)
+                .Include(c => c.CarModel.Manufacturer)
+                .Include(c => c.CarBodyType);
         }
 
         public CarDataModel GetById(int id)
         {
-            return _database.Cars.Include(c => c.CarModel).Include(c => c.CarModel.Manufacturer).FirstOrDefault(c => c.ID == id);
+            return _database.Cars
+                .Include(c => c.CarModel)
+                .Include(c => c.CarModel.Manufacturer)
+                .Include(c => c.CarBodyType)
+                .FirstOrDefault(c => c.ID == id);
         }
 
         public CarDataModel Insert(CarDataModel car)
@@ -49,7 +56,12 @@ namespace Rentacar.Services
         public IEnumerable<CarDataModel> GetAvailable(DateTime reservationBegin, DateTime reservationEnd)
         {
             List<CarDataModel> cars = new List<CarDataModel>();
-            foreach (var car in _database.Cars.Include(c => c.Images).ToList())
+            foreach (var car in _database.Cars
+                .Include(c => c.Images)
+                .Include(c => c.CarModel)
+                .Include(c => c.CarModel.Manufacturer)
+                .Include(c => c.CarBodyType)
+                .ToList())
             {
                 bool isReserved = _database.Reservations.Where(r => r.Car.ID == car.ID).Any(r => 
                     (reservationBegin >= r.ReservationBegin && r.ReservationEnd >= reservationBegin) ||

@@ -8,23 +8,27 @@ using Rentacar.Services.Interfaces;
 
 namespace Rentacar.Controllers
 {
+    [Authorize(Roles = "Admin")]
     public class CarAdminController : Controller
     {
         private readonly ICarBusinessLogic _cars;
         private readonly ICarManufacturerService _carManufacturers;
         private readonly ICarModelService _carModels;
         private readonly ICarImageBusinessLogic _carImages;
+        private readonly ICarBodyTypeBusinessLogic _carTypes;
 
         public CarAdminController(
             ICarBusinessLogic cars, 
             ICarManufacturerService carManufacturers, 
             ICarModelService carModels, 
-            ICarImageBusinessLogic carImages)
+            ICarImageBusinessLogic carImages,
+            ICarBodyTypeBusinessLogic carTypes)
         {
             _cars = cars;
             _carManufacturers = carManufacturers;
             _carModels = carModels;
             _carImages = carImages;
+            _carTypes = carTypes;
         }
 
         public IActionResult Index()
@@ -43,8 +47,10 @@ namespace Rentacar.Controllers
         [HttpGet]
         public IActionResult Create()
         {
+            CarCreateBusinessModel car = new CarCreateBusinessModel();
+            car.CarBodyTypeList = _carTypes.GetSelectListItems();
             ViewBag.CarManufacturerOptions = _carManufacturers.GetAll();
-            return View();
+            return View(car);
         }
         [Authorize]
         [HttpPost]
@@ -65,6 +71,7 @@ namespace Rentacar.Controllers
             CarEditBusinessModel car = _cars.GetCarEditModel(id);
             ViewBag.CarManufacturerOptions = _carManufacturers.GetAll();
             ViewBag.CarModelOptions = _carModels.GetByManufacturerID(car.CarManufacturer.ID);
+            car.CarBodyTypeList = _carTypes.GetSelectListItems();
             return View(car);
         }
         [Authorize]
@@ -94,7 +101,7 @@ namespace Rentacar.Controllers
             IEnumerable<CarImageBusinessModel> images = _carImages.GetByCarID(id);
             if (images == null || images.Count() == 0) 
                 return RedirectToAction("Details", new { id });
-            return View();
+            return View(images);
         }
     }
 }

@@ -24,7 +24,10 @@ namespace Rentacar
             builder.Services.AddDefaultIdentity<IdentityUser>(options =>
             {
                 options.SignIn.RequireConfirmedEmail = false;
-            }).AddEntityFrameworkStores<ApplicationDbContext>();
+            })
+                .AddRoles<IdentityRole>()
+                .AddDefaultTokenProviders()
+                .AddEntityFrameworkStores<ApplicationDbContext>();
 
             builder.Services.AddAutoMapper(options =>
             {
@@ -47,6 +50,8 @@ namespace Rentacar
             builder.Services.AddScoped<IIdentificationDocumentTypeService, DbIdentificationDocumentTypeService>();
             builder.Services.AddScoped<IReservationService, DbReservationService>();
             builder.Services.AddScoped<IReservationStatusService, DbReservationStatusService>();
+            builder.Services.AddScoped<ICarBodyTypeService, DbCarBodyTypeService>();
+
             builder.Services.AddScoped<ICarBusinessLogic, CarBusinessLogic>();
             builder.Services.AddScoped<ICarModelBusinessLogic, CarModelBusinessLogic>();
             builder.Services.AddScoped<ICarImageBusinessLogic, CarImageBusinessLogic>();
@@ -54,6 +59,7 @@ namespace Rentacar
             builder.Services.AddScoped<IUserInfoBusinessLogic, UserInfoBusinessLogic>();
             builder.Services.AddScoped<IIdentificationDocumentTypeBusinessLogic, IdentificationDocumentTypeBusinessLogic>();
             builder.Services.AddScoped<IReservationBusinessLogic, ReservationBusinessLogic>();
+            builder.Services.AddScoped<ICarBodyTypeBusinessLogic, CarBodyTypeBusinessLogic>();
 
             builder.Services.AddControllersWithViews();
 

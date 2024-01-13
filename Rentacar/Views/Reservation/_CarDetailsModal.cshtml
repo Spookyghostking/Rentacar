@@ -1,0 +1,57 @@
+﻿@model Rentacar.BusinessModels.Car.CarDetailsBusinessModel
+
+@await Html.PartialAsync("_CarSelectionCarousel", Model.Images)
+<hr />
+<div class="container-fluid">
+    <dl class="row">
+        <dt class="col-sm-5">
+            @Html.DisplayNameFor(model => model.LicencePlateNumber)
+        </dt>
+        <dd class="col-sm-5">
+            @Html.DisplayFor(model => model.LicencePlateNumber)
+        </dd>
+        <dt class="col-sm-5">
+            @Html.DisplayNameFor(model => model.CarManufacturerName)
+        </dt>
+        <dd class="col-sm-5">
+            @Html.DisplayFor(model => model.CarManufacturerName)
+        </dd>
+        <dt class="col-sm-5">
+            @Html.DisplayNameFor(model => model.CarModelName)
+        </dt>
+        <dd class="col-sm-5">
+            @Html.DisplayFor(model => model.CarModelName)
+        </dd>
+        <dt class="col-sm-5">
+            @Html.DisplayNameFor(model => model.ManufacturedYear)
+        </dt>
+        <dd class="col-sm-5">
+            @Html.DisplayFor(model => model.ManufacturedYear)
+        </dd>
+        <dt class="col-sm-5">
+            @Html.DisplayNameFor(model => model.CodeName)
+        </dt>
+        <dd class="col-sm-5">
+            @Html.DisplayFor(model => model.CodeName)
+        </dd>
+        <dt class="col-sm-5">
+            @Html.DisplayNameFor(model => model.DailyFee)
+        </dt>
+        <dd class="col-sm-5">
+            @Html.DisplayFor(model => model.DailyFee)
+        </dd>
+        <dt class="col-sm-5">
+            @Html.DisplayNameFor(model => model.FixedFee)
+        </dt>
+        <dd class="col-sm-5">
+            @Html.DisplayFor(model => model.FixedFee)
+        </dd>
+        <dt class="col-sm-5">
+            @Html.DisplayNameFor(model => model.DateAdded)
+        </dt>
+        <dd class="col-sm-5">
+            @Html.DisplayFor(model => model.DateAdded)
+        </dd>
+    </dl>
+</div>
+</div>

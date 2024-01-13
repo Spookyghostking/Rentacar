@@ -43,6 +43,19 @@ namespace Rentacar.BusinessLogic
             return _mapper.Map<ReservationEditBusinessModel>(_reservations.GetById(id));
         }
 
+        public ReservationEditAdminBusinessModel GetEditAdmin(int id)
+        {
+            return _mapper.Map<ReservationEditAdminBusinessModel>(_reservations.GetById(id));
+        }
+
+        public IEnumerable<ReservationDetailsBusinessModel> GetbyUser(string userID)
+        {
+            IEnumerable<ReservationDataModel> reservationData =  _reservations.GetbyUser(userID);
+            IEnumerable<ReservationDetailsBusinessModel> reservations =
+                _mapper.Map<IEnumerable<ReservationDetailsBusinessModel>>(reservationData);
+            return reservations;
+        }
+
         public ReservationDetailsBusinessModel Insert(ReservationCreateBusinessModel reservation)
         {
             ReservationDataModel reservationData = _mapper.Map<ReservationDataModel>(reservation);
@@ -58,6 +71,16 @@ namespace Rentacar.BusinessLogic
             ReservationDataModel reservationData = _mapper.Map<ReservationDataModel>(reservation);
             reservationData.Car = _cars.GetById(reservation.CarID);
             reservationData.UserInfo = _userInfo.GetByID(reservation.UserInfoID);
+            reservationData = _reservations.Update(reservationData);
+            return _mapper.Map<ReservationDetailsBusinessModel>(reservationData);
+        }
+
+        public ReservationDetailsBusinessModel Update(ReservationEditAdminBusinessModel reservation)
+        {
+            ReservationDataModel reservationData = _mapper.Map<ReservationDataModel>(reservation);
+            reservationData.Car = _cars.GetById(reservation.CarID);
+            reservationData.UserInfo = _userInfo.GetByID(reservation.UserInfoID);
+            reservationData.Status = _statuses.GetByID(reservation.StatusID);
             reservationData = _reservations.Update(reservationData);
             return _mapper.Map<ReservationDetailsBusinessModel>(reservationData);
         }

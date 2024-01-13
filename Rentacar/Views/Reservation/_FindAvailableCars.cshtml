@@ -3,10 +3,11 @@
 @foreach (var car in Model)
 {
     <div class="card" style="width: 18rem;">
-        @await Html.PartialAsync("_ImageCarousel", car.Images)
+        @await Html.PartialAsync("_CarSelectionThumbnail", car.Images)
         <div class="card-body">
-            <p>@car.CodeName</p>
+            <p>@car.ManufacturedYear @car.CarManufacturerName @car.CarModelName - @car.CodeName</p>
             <button class="btn btn-primary reservationCreateCarSelect" value="@car.ID">Select</button>
+            <button class="btn btn-primary car-details" value="@car.ID" data-bs-toggle="modal" data-bs-target="#modal">Details</button>
         </div>
     </div>
 }

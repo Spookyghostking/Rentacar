@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Rentacar.BusinessLogic.Interfaces;
 using Rentacar.BusinessModels.CarModel;
@@ -7,6 +8,7 @@ using Rentacar.Services.Interfaces;
 
 namespace Rentacar.Controllers
 {
+    [Authorize(Roles = "Admin")]
     public class CarModelAdminController : Controller
     {
         private readonly ICarModelBusinessLogic _carModels;

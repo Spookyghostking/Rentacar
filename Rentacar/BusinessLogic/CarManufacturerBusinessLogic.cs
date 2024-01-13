@@ -28,7 +28,7 @@ namespace Rentacar.BusinessLogic
             return _mapper.Map<CarManufacturerBusinessModel>(manufacturer);
         }
 
-        public CarManufacturerBusinessModel Insert(CarManufacturerBusinessModel manufacturer)
+        public CarManufacturerBusinessModel Insert(CarManufacturerCreateBusinessModel manufacturer)
         {
             CarManufacturerDataModel manufacturerData = _mapper.Map<CarManufacturerDataModel>(manufacturer);
             manufacturerData = _carManufacturers.Insert(manufacturerData);

@@ -6,7 +6,7 @@ namespace Rentacar.BusinessLogic.Interfaces
     {
         IEnumerable<CarManufacturerBusinessModel> GetAll();
         CarManufacturerBusinessModel GetByID(int id);
-        CarManufacturerBusinessModel Insert(CarManufacturerBusinessModel manufacturer);
+        CarManufacturerBusinessModel Insert(CarManufacturerCreateBusinessModel manufacturer);
         CarManufacturerBusinessModel Update(CarManufacturerBusinessModel manufacturer);
         bool Delete(CarManufacturerBusinessModel manufacturer);
     }

@@ -6,66 +6,30 @@
 <table class="table">
     <thead>
         <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.ID)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.LicencePlateNumber)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.CarManufacturerName)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.CarModelName)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.ManufacturedYear)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.CodeName)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.DailyFee)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.FixedFee)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.DateAdded)
-            </th>
+            <th>@Html.DisplayNameFor(model => model.ID)</th>
+            <th>@Html.DisplayNameFor(model => model.LicencePlateNumber)</th>
+            <th>@Html.DisplayNameFor(model => model.ManufacturedYear)</th>
+            <th>@Html.DisplayNameFor(model => model.CarManufacturerName)</th>
+            <th>@Html.DisplayNameFor(model => model.CarModelName)</th>
+            <th>@Html.DisplayNameFor(model => model.CarBodyTypeValue)</th>
+            <th>@Html.DisplayNameFor(model => model.CodeName)</th>
+            <th>@Html.DisplayNameFor(model => model.DailyFee)</th>
+            <th>@Html.DisplayNameFor(model => model.FixedFee)</th>
             <th></th>
         </tr>
     </thead>
     <tbody>
 @foreach (var item in Model) {
         <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.ID)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.LicencePlateNumber)
-            </td>
-            <th>
-                @Html.DisplayFor(model => item.CarManufacturerName)
-            </th>
-            <th>
-                @Html.DisplayFor(model => item.CarModelName)
-            </th>
-            <td>
-                @Html.DisplayFor(modelItem => item.ManufacturedYear)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.CodeName)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.DailyFee)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.FixedFee)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.DateAdded)
-            </td>
+            <td>@Html.DisplayFor(modelItem => item.ID)</td>
+            <td>@Html.DisplayFor(modelItem => item.LicencePlateNumber)</td>
+            <td>@Html.DisplayFor(modelItem => item.ManufacturedYear)</td>
+            <th>@Html.DisplayFor(modelItem => item.CarManufacturerName)</th>
+            <th>@Html.DisplayFor(modelItem => item.CarModelName)</th>
+            <th>@Html.DisplayFor(modelItem => item.CarBodyTypeValue)</th>
+            <td>@Html.DisplayFor(modelItem => item.CodeName)</td>
+            <td>@Html.DisplayFor(modelItem => item.DailyFee)</td>
+            <td>@Html.DisplayFor(modelItem => item.FixedFee)</td>
             <td>
                 <a asp-action="Edit" asp-route-id="@item.ID">Edit</a> |
                 <a asp-action="Details" asp-route-id="@item.ID">Details</a> |

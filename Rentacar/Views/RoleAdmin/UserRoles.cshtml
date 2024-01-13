@@ -1,0 +1,46 @@
+﻿@using Microsoft.AspNetCore.Identity
+@model List<Tuple<IdentityUser, List<string>>>
+
+<div class="d-flex justify-content-center">
+    <form class="row g-3">
+        <div class="col-auto">
+            <input type="text" class="form-control" id="search" name="q" placeholder="Search Email">
+            <label for="search" class="visually-hidden">Search</label>
+        </div>
+        <div class="col-auto">
+            <button type="submit" class="btn btn-primary">Search</button>
+        </div>
+    </form>
+</div>
+<hr />
+
+<a class="btn btn-light" asp-action="Index">Role list</a>
+<table class="table">
+    <thead>
+        <tr>
+            <th>@Html.DisplayNameFor(model => model.First().Item1.Id)</th>
+            <th>@Html.DisplayNameFor(model => model.First().Item1.Email)</th>
+            <th>Roles</th>
+            <th></th>
+        </tr>
+    </thead>
+    @foreach (var pair in Model)
+    {
+        <tr>
+            <td>@Html.DisplayFor(model => pair.Item1.Id)</td>
+            <td>@Html.DisplayFor(model => pair.Item1.Email)</td>
+            <td>
+                @if (pair.Item2.Count > 0)
+                {
+                    string rolesString = pair.Item2.First();
+                    @for(int i = 1; i < pair.Item2.Count; i++)
+                    {
+                        rolesString += $", {pair.Item2.ElementAt(i)}";
+                    }
+                    @rolesString;
+                }
+            </td>
+            <td><a class="btn btn-light" asp-action="AssignRole" asp-route-id="@pair.Item1.Id">Assign Roles</a></td>
+        </tr>
+    }
+</table>

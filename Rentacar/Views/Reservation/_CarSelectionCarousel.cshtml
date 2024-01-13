@@ -1,0 +1,67 @@
+﻿@model IEnumerable<Rentacar.DataModels.CarImageDataModel>
+
+<div>
+    <div id="carImages" class="carousel slide w-100">
+        <div class="carousel-indicators">
+            @if (Model != null && Model.Count() > 1)
+            {
+                var count = 0;
+                var countPlus1 = 1;
+                @foreach (var image in Model)
+                {
+                    @if (count == 0)
+                    {
+                        <button type="button" data-bs-target="#carImages" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+                    }
+                    else
+                    {
+                        <button type="button" data-bs-target="#carImages" data-bs-slide-to="@count" aria-label="Slide @countPlus1"></button>
+                    }
+                    count += 1;
+                    countPlus1 = count + 1;
+                }
+            }
+        </div>
+        <div class="carousel-inner">
+            @if (Model != null && Model.Count() > 0)
+            {
+                var count = 0;
+                var countPlus1 = 1;
+                foreach (var image in Model)
+                {
+                    if (count == 0)
+                    {
+                        <div class="carousel-item active">
+                            <img src="@image.Url" class="card-img-top d-block w-100" alt="Image of @image.Car.CodeName @countPlus1">
+                        </div>
+                    }
+                    else
+                    {
+                        <div class="carousel-item">
+                            <img src="@image.Url" class="card-img-top d-block w-100" alt="Image of @image.Car.CodeName @countPlus1">
+                        </div>
+                    }
+                    count += 1;
+                    countPlus1 = count + 1;
+                }
+            }
+            else
+            {
+                <div class="card-img-top carousel-item active">
+                    <img src="/img/Car/default.png" class="card-img-top d-block w-100" alt="No image available">
+                </div>
+            }
+        </div>
+        @if (Model != null && Model.Count() > 1)
+        {
+            <button class="carousel-control-prev" type="button" data-bs-target="#carImages" data-bs-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Previous</span>
+            </button>
+            <button class="carousel-control-next" type="button" data-bs-target="#carImages" data-bs-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Next</span>
+            </button>
+        }
+    </div>
+</div>

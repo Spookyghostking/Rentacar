@@ -25,19 +25,28 @@
                         <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="About">About</a>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Reservation" asp-action="Info">Reserve a car</a>
-                        </li>
-                        <div class="nav-item dropdown d-flex">
-                            <button class="btn btn-light" data-bs-toggle="dropdown" aria-expanded="false">
-                                Admin
-                            </button>
-                            <ul class="dropdown-menu dropdown-menu-end">
-                                <li><a class="dropdown-item text-dark" asp-controller="CarAdmin" asp-action="Index">CarAdmin</a></li>
-                                <li><a class="dropdown-item text-dark" asp-controller="CarModelAdmin" asp-action="Index">CarModelAdmin</a></li>
-                                <li><a class="dropdown-item text-dark" asp-controller="CarManufacturerAdmin" asp-action="Index">CarManufacturerAdmin</a></li>
-                            </ul>
-                        </div>
+                        @if (!Context.User.IsInRole("Admin"))
+                        {
+                            <li class="nav-item">
+                                <a class="nav-link text-dark" asp-area="" asp-controller="Reservation" asp-action="Info">Reserve a car</a>
+                            </li>
+                        }
+                        @if (Context.User.IsInRole("Admin"))
+                        {
+                            <div class="nav-item dropdown d-flex">
+                                <button class="btn btn-light" data-bs-toggle="dropdown" aria-expanded="false">
+                                    Admin
+                                </button>
+                                <ul class="dropdown-menu dropdown-menu-end">
+                                    <li><a class="dropdown-item text-dark" asp-controller="RoleAdmin" asp-action="Index">RoleAdmin</a></li>
+                                    <li><a class="dropdown-item text-dark" asp-controller="CarAdmin" asp-action="Index">CarAdmin</a></li>
+                                    <li><a class="dropdown-item text-dark" asp-controller="CarModelAdmin" asp-action="Index">CarModelAdmin</a></li>
+                                    <li><a class="dropdown-item text-dark" asp-controller="CarManufacturerAdmin" asp-action="Index">CarManufacturerAdmin</a></li>
+                                    <li><a class="dropdown-item text-dark" asp-controller="ReservationAdmin" asp-action="Index">ReservationAdmin</a></li>
+                                </ul>
+                            </div>
+                        }
+                        
                         @* <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="" asp-controller="CarAdmin" asp-action="Index">CarAdmin</a>
                         </li> *@
@@ -50,6 +59,8 @@
                             Account
                         </button>
                         <ul class="dropdown-menu dropdown-menu-end">
+                            <li><div class="dropdown-item text-dark">@Context.User.Identity.Name</div></li>
+                            <li><a class="dropdown-item text-dark" asp-controller="Reservation" asp-action="Index">My Reservations</a></li>
                             <li><a class="dropdown-item text-dark" asp-area="identity" asp-page="/Account/logout">Logout</a></li>
                         </ul>
                     </div>

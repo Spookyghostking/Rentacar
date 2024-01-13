@@ -1,4 +1,6 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Mvc;
 using Rentacar.BusinessLogic.Interfaces;
 using Rentacar.BusinessModels.Car;
 using Rentacar.BusinessModels.Reservation;
@@ -9,24 +11,59 @@ namespace Rentacar.Controllers
     {
         private readonly ICarBusinessLogic _cars;
         private readonly IReservationBusinessLogic _reservations;
+        private readonly IUserInfoBusinessLogic _userInfo;
+        private readonly UserManager<IdentityUser> _userManager;
 
         public ReservationController(
             ICarBusinessLogic cars,
-            IReservationBusinessLogic reservations)
+            IReservationBusinessLogic reservations,
+            IUserInfoBusinessLogic userInfo,
+            UserManager<IdentityUser> userManager)
         {
             _cars = cars;
             _reservations = reservations;
+            _userInfo = userInfo;
+            _userManager = userManager;
         }
+
+
         public IActionResult Info()
         {
             return View();
         }
 
-        public IActionResult Details(int id)
+        [Authorize]
+        public async Task<IActionResult> Index()
         {
+            IdentityUser user = await _userManager.GetUserAsync(HttpContext.User);
+            if (user == null)
+            {
+                return StatusCode(StatusCodes.Status404NotFound);
+            }
+            List<ReservationDetailsBusinessModel> reservations = _reservations.GetbyUser(user.Id).ToList();
+            return View(reservations);
+        }
+
+        public async Task<IActionResult> Details(int id)
+        {
+            IdentityUser requestUser = await _userManager.GetUserAsync(HttpContext.User);
+            if (requestUser == null)
+            {
+                return StatusCode(StatusCodes.Status400BadRequest);
+            }
+
             ReservationDetailsBusinessModel reservation = _reservations.GetDetails(id);
             if (reservation == null)
                 return StatusCode(StatusCodes.Status404NotFound);
+
+            var userInfo = _userInfo.GetDetailsByID(reservation.UserInfoID);
+            IdentityUser reservationUser = await _userManager.FindByIdAsync(userInfo.User.Id);
+
+            if (requestUser != reservationUser)
+            {
+                return RedirectToPage("/Account/AccessDenied", new { area = "Identity" });
+            }
+
             return View(reservation);
         }
 
@@ -84,10 +121,16 @@ namespace Rentacar.Controllers
 
         public IActionResult FindAvailableCars(ReservationCreateBusinessModel reservation)
         {
-            Console.WriteLine($"The start date is {reservation.ReservationBegin}");
+            //Console.WriteLine($"The start date is {reservation.ReservationBegin}");
             IEnumerable<CarDetailsBusinessModel> cars =  _cars.GetAvailable(reservation);
             return PartialView("_FindAvailableCars", cars);
             return Json("poop");
+        }
+
+        public IActionResult CarDetailsModal(int id)
+        {
+            CarDetailsBusinessModel car = _cars.GetCarDetails(id);
+            return PartialView("_CarDetailsModal", car);
         }
     }
 }

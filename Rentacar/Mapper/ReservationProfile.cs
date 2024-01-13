@@ -16,6 +16,9 @@ namespace Rentacar.Mapper
 
             CreateMap<ReservationEditBusinessModel, ReservationDataModel>();
             CreateMap<ReservationDataModel, ReservationEditBusinessModel>();
+
+            CreateMap<ReservationDataModel, ReservationEditAdminBusinessModel>();
+            CreateMap<ReservationEditAdminBusinessModel, ReservationDataModel>();
         }
     }
 }
