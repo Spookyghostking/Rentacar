@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using Microsoft.AspNetCore.Identity;
 using Rentacar.BusinessLogic.Interfaces;
 using Rentacar.BusinessModels.IdentificationDocumentImage;
 using Rentacar.BusinessModels.UserInfo;
@@ -11,17 +12,20 @@ namespace Rentacar.BusinessLogic
     {
         private readonly IMapper _mapper;
         private readonly IUserInfoService _userInfo;
+        private readonly UserManager<IdentityUser> _userManager;
         private readonly IIdentificationDocumentImageService _identificationImages;
         private readonly IIdentificationDocumentTypeService _identificationTypes;
 
         public UserInfoBusinessLogic(
             IMapper mapper, 
             IUserInfoService userInfo,
+            UserManager<IdentityUser> userManager,
             IIdentificationDocumentImageService identificationImages,
             IIdentificationDocumentTypeService identificationTypes)
         {
             _mapper = mapper;
             _userInfo = userInfo;
+            _userManager = userManager;
             _identificationImages = identificationImages;
             _identificationTypes = identificationTypes;
         }
@@ -33,6 +37,13 @@ namespace Rentacar.BusinessLogic
             IEnumerable<IdentificationDocumentImageDataModel> images = _identificationImages.GetByUserInfoID(userInfo.ID);
             userInfo.IdentificationImages = _mapper.Map<IEnumerable<IdentificationDocumentImageBusinessModel>>(images);
             return userInfo;
+        }
+
+        public async Task<IdentityUser> GetUserByUserInfoIDAsync(int userInfoID)
+        {
+            UserInfoDataModel userInfo = _userInfo.GetByID(userInfoID);
+            IdentityUser user = await _userManager.FindByIdAsync(userInfo.User.Id);
+            return user;
         }
 
         public IEnumerable<UserInfoDetailsBusinessModel> GetDetailsByUserID(string id)

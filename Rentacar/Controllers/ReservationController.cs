@@ -79,8 +79,14 @@ namespace Rentacar.Controllers
             return View(reservation);
         }
         [HttpPost]
-        public IActionResult Create(ReservationCreateBusinessModel reservation)
+        public async Task<IActionResult> Create(ReservationCreateBusinessModel reservation)
         {
+            IdentityUser userInfoUser = await _userInfo.GetUserByUserInfoIDAsync(reservation.UserInfoID);
+            IdentityUser requestUser = await _userManager.GetUserAsync(HttpContext.User);
+            if (requestUser != userInfoUser)
+            {
+                return RedirectToPage("/Account/AccessDenied", new { area = "Identity" });
+            }
             ReservationDetailsBusinessModel reservationDetails = _reservations.Insert(reservation);
             return RedirectToAction("Details", new { id = reservationDetails.ID });
         }
